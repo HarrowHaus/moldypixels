@@ -6,16 +6,17 @@
 
 ## Current Architecture
 
-The repo now uses the correct hub-and-kits layout:
+The repo now uses a hub-and-kits layout plus a manifest-driven library dashboard:
 
 ```txt
 /                 Moldy Pixels hub
+/library/          Library parity dashboard
 /saveglass/        Saveglass UI dogfood showcase
 /machine-candy/    Machine Candy UI dogfood showcase
 /menu-ink/         Menu Ink UI dogfood showcase
 ```
 
-The root page is no longer a single kit page. It is the Moldy Pixels hub that routes into the three style systems.
+The root page routes into the three style systems. The `/library/` page tracks the real component, block, and template parity target.
 
 ## Style Slices
 
@@ -29,38 +30,22 @@ The root page is no longer a single kit page. It is the Moldy Pixels hub that ro
 
 This repo contains static, dependency-free dogfood showcases for the first three Moldy Pixels styles.
 
-Saveglass includes:
+It now also contains explicit inventory manifests:
 
-- interactive homepage
-- live component lab
-- component variant controls
-- copyable code snippet panel
-- block archive with preview modal
-- theme bank switcher
-- template launcher
-- four full preview template pages
-- registry-style table
-- mobile drawer, modal, and toast behavior
+```txt
+data/kits.js
+data/components.js
+data/blocks.js
+data/templates.js
+```
 
-Machine Candy includes:
+These drive:
 
-- standalone dogfood homepage
-- interactive device preview screen
-- component/control examples
-- block direction cards
-- template direction cards
-- four appliance mode themes
-- molded button and LCD field styling
+```txt
+/library/
+```
 
-Menu Ink includes:
-
-- standalone dogfood homepage
-- interactive chapter/manual preview
-- ink-frame component examples
-- archive table examples
-- block and template folio sections
-- four formal theme modes
-- premium menu-system styling without fantasy cosplay
+The dashboard separates **planned**, **prototype**, and **showcase** status so the project does not pretend a visual demo is a finished component library.
 
 No framework is required:
 
@@ -110,19 +95,24 @@ http://127.0.0.1:8080
 
 ```txt
 /                                Moldy Pixels hub
-/saveglass/                      Saveglass dogfood showcase
-/machine-candy/                  Machine Candy dogfood showcase
-/menu-ink/                       Menu Ink dogfood showcase
-/templates/dashboard.html         Saveglass SaaS dashboard preview
-/templates/ai-workspace.html      Saveglass AI workspace preview
-/templates/docs-manual.html       Saveglass docs/manual preview
-/templates/marketplace.html       Saveglass marketplace preview
+/library/                         Manifest-driven parity dashboard
+/saveglass/                       Saveglass dogfood showcase
+/machine-candy/                   Machine Candy dogfood showcase
+/menu-ink/                        Menu Ink dogfood showcase
+/templates/dashboard.html          Saveglass SaaS dashboard preview
+/templates/ai-workspace.html       Saveglass AI workspace preview
+/templates/docs-manual.html        Saveglass docs/manual preview
+/templates/marketplace.html        Saveglass marketplace preview
 ```
 
 ## Files
 
 ```txt
 index.html                         Moldy Pixels hub
+library/index.html                 Library parity dashboard
+data/*.js                          Manifest data for kits/components/blocks/templates
+shared/library.css                 Library dashboard styles
+shared/render-library.js           Library dashboard renderer
 saveglass/index.html                Saveglass dogfood showcase
 styles.css                         core Saveglass theme system and components
 phase2.css                         Saveglass component lab, blocks, and template page styles
@@ -169,40 +159,16 @@ Menu Ink:
 
 ## Next Build Move
 
-Harden parity across all three kits:
+Use the manifest layer to generate parity pages:
 
 ```txt
-/saveglass/       already has the deepest component lab + templates
-/machine-candy/   needs expanded component lab + full templates
-/menu-ink/        needs expanded component lab + full templates
+/component index
+/block index
+/template index
+/per-kit component pages
 ```
 
-After parity, convert the static systems into a shadcn-compatible registry.
-
-## Future Package Direction
-
-```txt
-packages/
-  saveglass/
-  machine-candy/
-  menu-ink/
-shared/
-  preview-system/
-  accessibility/
-  registry-utils/
-```
-
-## Deployment
-
-Because this is static, GitHub Pages can serve it directly from the repo root.
-
-Recommended GitHub Pages setting:
-
-```txt
-Source: Deploy from branch
-Branch: main
-Folder: /root
-```
+Then bring Machine Candy and Menu Ink to Saveglass parity before starting shadcn registry JSON.
 
 ## License
 

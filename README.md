@@ -6,17 +6,20 @@
 
 ## Current Architecture
 
-The repo now uses a hub-and-kits layout plus a manifest-driven library dashboard:
+The repo now uses a hub-and-kits layout plus manifest-driven library catalogs:
 
 ```txt
-/                 Moldy Pixels hub
+/                 Moldy Pixels landing page
 /library/          Library parity dashboard
-/saveglass/        Saveglass UI dogfood showcase
-/machine-candy/    Machine Candy UI dogfood showcase
-/menu-ink/         Menu Ink UI dogfood showcase
+/components/       Shared component catalog
+/blocks/           Shared block catalog
+/templates/        Shared template catalog and Saveglass previews
+/saveglass/        Saveglass UI dedicated style page
+/machine-candy/    Machine Candy UI dedicated style page
+/menu-ink/         Menu Ink UI dedicated style page
 ```
 
-The root page routes into the three style systems. The `/library/` page tracks the real component, block, and template parity target.
+The root page is the umbrella landing page. Each style has its own dedicated product page. The `/library/`, `/components/`, `/blocks/`, and `/templates/` routes expose the library depth and parity target.
 
 ## Style Slices
 
@@ -43,6 +46,9 @@ These drive:
 
 ```txt
 /library/
+/components/
+/blocks/
+/templates/
 ```
 
 The dashboard separates **planned**, **prototype**, and **showcase** status so the project does not pretend a visual demo is a finished component library.
@@ -94,8 +100,11 @@ http://127.0.0.1:8080
 ## Routes
 
 ```txt
-/                                Moldy Pixels hub
+/                                Moldy Pixels landing page
 /library/                         Manifest-driven parity dashboard
+/components/                      Shared component catalog
+/blocks/                          Shared block catalog
+/templates/                       Shared template catalog
 /saveglass/                       Saveglass dogfood showcase
 /machine-candy/                   Machine Candy dogfood showcase
 /menu-ink/                        Menu Ink dogfood showcase
@@ -108,11 +117,15 @@ http://127.0.0.1:8080
 ## Files
 
 ```txt
-index.html                         Moldy Pixels hub
+index.html                         Moldy Pixels landing page
 library/index.html                 Library parity dashboard
+components/index.html              Shared component catalog
+blocks/index.html                  Shared block catalog
+templates/index.html               Shared template catalog
 data/*.js                          Manifest data for kits/components/blocks/templates
-shared/library.css                 Library dashboard styles
+shared/library.css                 Library/catalog dashboard styles
 shared/render-library.js           Library dashboard renderer
+shared/render-catalog.js           Components/blocks/templates catalog renderer
 saveglass/index.html                Saveglass dogfood showcase
 styles.css                         core Saveglass theme system and components
 phase2.css                         Saveglass component lab, blocks, and template page styles
@@ -131,44 +144,17 @@ LICENSE                            MIT license
 .gitignore                         basic ignores
 ```
 
-## Design Principles
-
-Saveglass:
-
-1. **Slot before card** — cards are saved objects, not generic rectangles.
-2. **Metadata is ornament** — slot IDs, status labels, versions, and timestamps create the style.
-3. **Glow means state** — glow is reserved for selection, focus, loading, warning, or error.
-4. **Transparency must stay readable** — translucent shells use solid inner surfaces when text matters.
-5. **Structure beats decoration** — dividers, status strips, rails, and registries do more work than random effects.
-
-Machine Candy:
-
-1. **Machine before candy** — playful color only works because the grid is strict.
-2. **Controls must look pressable** — buttons need compression, seams, and tactile feedback.
-3. **Inputs are readouts** — form fields should feel like LCD windows, not generic boxes.
-4. **Color is mode-based** — palettes are appliance modes, not random pastel blobs.
-5. **Cute is allowed; childish is not** — typography and spacing keep it usable.
-
-Menu Ink:
-
-1. **Frame before ornament** — decoration must reinforce containment and selection.
-2. **Chapters organize action** — navigation should feel like a manual or menu system.
-3. **Tables are ledgers** — data gets archival structure, not SaaS spreadsheet gloss.
-4. **Selection is formal** — active states use ink fill, side marks, or chapter emphasis.
-5. **No cosplay** — no fake fantasy textures, parchment overload, or lore nonsense.
-
 ## Next Build Move
 
-Use the manifest layer to generate parity pages:
+Generate per-kit component pages:
 
 ```txt
-/component index
-/block index
-/template index
-/per-kit component pages
+/saveglass/components/button/
+/machine-candy/components/button/
+/menu-ink/components/button/
 ```
 
-Then bring Machine Candy and Menu Ink to Saveglass parity before starting shadcn registry JSON.
+Then repeat for blocks and templates before starting shadcn registry JSON.
 
 ## License
 

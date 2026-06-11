@@ -1,18 +1,33 @@
 # Moldy Pixels
 
-**Moldy Pixels** is a deliberately unserious name for a serious styled UI kit experiment: a retro-adjacent component ecosystem built around three visual design languages.
-
-The repo now contains three dogfood style slices:
-
-- **Saveglass UI** — memory-screen components: slots, registries, memory banks, system strips, overlays, and selected states.
-- **Machine Candy UI** — candy-plastic hardware components: molded buttons, LCD fields, appliance controls, chunky panels, and friendly mode selectors.
-- **Menu Ink UI** — formal menu components: ink frames, chapter navigation, manuscript panels, archive ledgers, and premium selection states.
+**Moldy Pixels** is a deliberately unserious name for a serious styled UI kit experiment: a retro-adjacent component ecosystem built around three visual languages.
 
 > Premium UI components with questionable storage conditions.
 
+## Current Architecture
+
+The repo now uses the correct hub-and-kits layout:
+
+```txt
+/                 Moldy Pixels hub
+/saveglass/        Saveglass UI dogfood showcase
+/machine-candy/    Machine Candy UI dogfood showcase
+/menu-ink/         Menu Ink UI dogfood showcase
+```
+
+The root page is no longer a single kit page. It is the Moldy Pixels hub that routes into the three style systems.
+
+## Style Slices
+
+| Kit | Visual engine | Route |
+|---|---|---|
+| Saveglass UI | memory slots, registries, translucent overlays | `/saveglass/` |
+| Machine Candy UI | molded plastic, LCD fields, appliance controls | `/machine-candy/` |
+| Menu Ink UI | ink frames, chapter menus, archive ledgers | `/menu-ink/` |
+
 ## Current Status
 
-This repo currently contains static, dependency-free dogfood showcases for the first three Moldy Pixels styles.
+This repo contains static, dependency-free dogfood showcases for the first three Moldy Pixels styles.
 
 Saveglass includes:
 
@@ -94,24 +109,26 @@ http://127.0.0.1:8080
 ## Routes
 
 ```txt
-/                                Saveglass dogfood homepage
-/machine-candy/                  Machine Candy dogfood homepage
-/menu-ink/                       Menu Ink dogfood homepage
-/templates/dashboard.html         SaaS dashboard preview
-/templates/ai-workspace.html      AI workspace preview
-/templates/docs-manual.html       Docs/manual preview
-/templates/marketplace.html       Template marketplace preview
+/                                Moldy Pixels hub
+/saveglass/                      Saveglass dogfood showcase
+/machine-candy/                  Machine Candy dogfood showcase
+/menu-ink/                       Menu Ink dogfood showcase
+/templates/dashboard.html         Saveglass SaaS dashboard preview
+/templates/ai-workspace.html      Saveglass AI workspace preview
+/templates/docs-manual.html       Saveglass docs/manual preview
+/templates/marketplace.html       Saveglass marketplace preview
 ```
 
 ## Files
 
 ```txt
-index.html                         Saveglass dogfood homepage
+index.html                         Moldy Pixels hub
+saveglass/index.html                Saveglass dogfood showcase
 styles.css                         core Saveglass theme system and components
-phase2.css                         component lab, blocks, and template page styles
-app.js                             homepage interactions
-phase2.js                          component lab and block archive interactions
-templates/template-page.js         tiny shared script for preview template pages
+phase2.css                         Saveglass component lab, blocks, and template page styles
+app.js                             Saveglass homepage interactions
+phase2.js                          Saveglass component lab and block archive interactions
+templates/template-page.js         tiny shared script for Saveglass preview template pages
 templates/*.html                   full static Saveglass template previews
 machine-candy/index.html           Machine Candy dogfood homepage
 machine-candy/machine-candy.css    Machine Candy visual system
@@ -123,50 +140,6 @@ package.json                       static server scripts
 LICENSE                            MIT license
 .gitignore                         basic ignores
 ```
-
-## What Saveglass Is
-
-**Saveglass UI** is a styled component direction based on modernized 2000s console memory interfaces.
-
-It is not generic glassmorphism.
-
-Glassmorphism usually means frosted cards and blur. Saveglass uses translucency as part of a larger visual grammar:
-
-- save slots
-- memory banks
-- selected rails
-- metadata strips
-- system overlays
-- registry tables
-- segmented progress
-- status chips
-- theme banks
-
-## What Machine Candy Is
-
-**Machine Candy UI** is a tactile consumer-hardware style based on friendly 2000s electronics.
-
-It is not claymorphism, pastel SaaS, or a kids-app skin. The style depends on:
-
-- molded plastic surfaces
-- pressable hardware buttons
-- LCD-style readout fields
-- appliance control logic
-- candy color palettes under strict grid discipline
-- chunky panels with real internal structure
-
-## What Menu Ink Is
-
-**Menu Ink UI** is a formal menu-driven style based on refined interface panels, chapter navigation, archive ledgers, and manuscript-like surfaces.
-
-It is not fantasy parchment, anime RPG cosplay, or generic editorial minimalism. The style depends on:
-
-- ink-framed panels
-- chapter command navigation
-- archive ledger tables
-- manuscript preview surfaces
-- disciplined ornament
-- selected states that feel formal, not flashy
 
 ## Design Principles
 
@@ -194,23 +167,19 @@ Menu Ink:
 4. **Selection is formal** — active states use ink fill, side marks, or chapter emphasis.
 5. **No cosplay** — no fake fantasy textures, parchment overload, or lore nonsense.
 
-## The Larger Moldy Pixels Plan
+## Next Build Move
 
-Moldy Pixels is now framed as a three-style UI ecosystem:
+Harden parity across all three kits:
 
-| Kit | Visual direction |
-|---|---|
-| Saveglass UI | memory-screen components, translucent slots, registry panels |
-| Machine Candy UI | candy-colored molded hardware, LCD fields, appliance controls |
-| Menu Ink UI | elegant menu panels, ink frames, chapter navigation |
+```txt
+/saveglass/       already has the deepest component lab + templates
+/machine-candy/   needs expanded component lab + full templates
+/menu-ink/        needs expanded component lab + full templates
+```
 
-The next build move is to create a real **Moldy Pixels hub** at the root, then move the current Saveglass homepage under `/saveglass/` so all three kits sit at equal depth.
+After parity, convert the static systems into a shadcn-compatible registry.
 
 ## Future Package Direction
-
-The intended production form is a shadcn-compatible registry and styled component library.
-
-Planned package surface:
 
 ```txt
 packages/

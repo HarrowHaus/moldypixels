@@ -2,16 +2,17 @@
 
 **Moldy Pixels** is a deliberately unserious name for a serious styled UI kit experiment: a retro-adjacent component ecosystem built around three visual design languages.
 
-The repo now contains two dogfood style slices:
+The repo now contains three dogfood style slices:
 
 - **Saveglass UI** — memory-screen components: slots, registries, memory banks, system strips, overlays, and selected states.
 - **Machine Candy UI** — candy-plastic hardware components: molded buttons, LCD fields, appliance controls, chunky panels, and friendly mode selectors.
+- **Menu Ink UI** — formal menu components: ink frames, chapter navigation, manuscript panels, archive ledgers, and premium selection states.
 
 > Premium UI components with questionable storage conditions.
 
 ## Current Status
 
-This repo currently contains static, dependency-free dogfood showcases.
+This repo currently contains static, dependency-free dogfood showcases for the first three Moldy Pixels styles.
 
 Saveglass includes:
 
@@ -35,6 +36,16 @@ Machine Candy includes:
 - template direction cards
 - four appliance mode themes
 - molded button and LCD field styling
+
+Menu Ink includes:
+
+- standalone dogfood homepage
+- interactive chapter/manual preview
+- ink-frame component examples
+- archive table examples
+- block and template folio sections
+- four formal theme modes
+- premium menu-system styling without fantasy cosplay
 
 No framework is required:
 
@@ -85,6 +96,7 @@ http://127.0.0.1:8080
 ```txt
 /                                Saveglass dogfood homepage
 /machine-candy/                  Machine Candy dogfood homepage
+/menu-ink/                       Menu Ink dogfood homepage
 /templates/dashboard.html         SaaS dashboard preview
 /templates/ai-workspace.html      AI workspace preview
 /templates/docs-manual.html       Docs/manual preview
@@ -104,6 +116,9 @@ templates/*.html                   full static Saveglass template previews
 machine-candy/index.html           Machine Candy dogfood homepage
 machine-candy/machine-candy.css    Machine Candy visual system
 machine-candy/machine-candy.js     Machine Candy interactions
+menu-ink/index.html                Menu Ink dogfood homepage
+menu-ink/menu-ink.css              Menu Ink visual system
+menu-ink/menu-ink.js               Menu Ink interactions
 package.json                       static server scripts
 LICENSE                            MIT license
 .gitignore                         basic ignores
@@ -140,6 +155,19 @@ It is not claymorphism, pastel SaaS, or a kids-app skin. The style depends on:
 - candy color palettes under strict grid discipline
 - chunky panels with real internal structure
 
+## What Menu Ink Is
+
+**Menu Ink UI** is a formal menu-driven style based on refined interface panels, chapter navigation, archive ledgers, and manuscript-like surfaces.
+
+It is not fantasy parchment, anime RPG cosplay, or generic editorial minimalism. The style depends on:
+
+- ink-framed panels
+- chapter command navigation
+- archive ledger tables
+- manuscript preview surfaces
+- disciplined ornament
+- selected states that feel formal, not flashy
+
 ## Design Principles
 
 Saveglass:
@@ -158,9 +186,17 @@ Machine Candy:
 4. **Color is mode-based** — palettes are appliance modes, not random pastel blobs.
 5. **Cute is allowed; childish is not** — typography and spacing keep it usable.
 
+Menu Ink:
+
+1. **Frame before ornament** — decoration must reinforce containment and selection.
+2. **Chapters organize action** — navigation should feel like a manual or menu system.
+3. **Tables are ledgers** — data gets archival structure, not SaaS spreadsheet gloss.
+4. **Selection is formal** — active states use ink fill, side marks, or chapter emphasis.
+5. **No cosplay** — no fake fantasy textures, parchment overload, or lore nonsense.
+
 ## The Larger Moldy Pixels Plan
 
-Moldy Pixels is planned as a three-style UI ecosystem:
+Moldy Pixels is now framed as a three-style UI ecosystem:
 
 | Kit | Visual direction |
 |---|---|
@@ -168,7 +204,7 @@ Moldy Pixels is planned as a three-style UI ecosystem:
 | Machine Candy UI | candy-colored molded hardware, LCD fields, appliance controls |
 | Menu Ink UI | elegant menu panels, ink frames, chapter navigation |
 
-The next build move is **Menu Ink UI** under `/menu-ink/`.
+The next build move is to create a real **Moldy Pixels hub** at the root, then move the current Saveglass homepage under `/saveglass/` so all three kits sit at equal depth.
 
 ## Future Package Direction
 

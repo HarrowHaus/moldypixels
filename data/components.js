@@ -1,6 +1,6 @@
 window.MP_COMPONENTS = [
   ['accordion','Accordion','Disclosure','planned'],
-  ['alert','Alert','Feedback','planned'],
+  ['alert','Alert','Feedback','prototype'],
   ['alert-dialog','Alert Dialog','Overlay','planned'],
   ['avatar','Avatar','Media','planned'],
   ['badge','Badge','Feedback','prototype'],

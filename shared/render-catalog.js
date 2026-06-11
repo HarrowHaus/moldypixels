@@ -5,13 +5,12 @@ const table = document.querySelector('[data-catalog-table]');
 const cards = document.querySelector('[data-catalog-cards]');
 const search = document.querySelector('[data-catalog-search]');
 
-const componentDocs = {
-  button: [
-    ['Saveglass', '../saveglass/components/button/'],
-    ['Machine Candy', '../machine-candy/components/button/'],
-    ['Menu Ink', '../menu-ink/components/button/']
-  ]
-};
+const documentedComponents = ['button','card','input','badge'];
+const componentDocs = Object.fromEntries(documentedComponents.map(id => [id, [
+  ['Saveglass', `../saveglass/components/${id}/`],
+  ['Machine Candy', `../machine-candy/components/${id}/`],
+  ['Menu Ink', `../menu-ink/components/${id}/`]
+]]));
 
 const copy = {
   components: {

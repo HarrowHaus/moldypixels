@@ -2,15 +2,28 @@
 
 **Moldy Pixels** is a deliberately unserious name for a serious styled UI kit experiment: a retro-adjacent component ecosystem built around three visual design languages.
 
-The first shipped vertical slice is **Saveglass UI** — a memory-screen inspired dogfood homepage that turns ordinary web components into saved objects: slots, registries, memory banks, system strips, overlays, and selected states.
+The first shipped style is **Saveglass UI** — a memory-screen inspired dogfood site that turns ordinary web components into saved objects: slots, registries, memory banks, system strips, overlays, and selected states.
 
 > Premium UI components with questionable storage conditions.
 
 ## Current Status
 
-This repo currently contains the first fully interactive static dogfood page for **Saveglass UI**.
+This repo currently contains a static, dependency-free **Saveglass UI dogfood showcase**.
 
-It is intentionally dependency-free so it runs anywhere:
+It includes:
+
+- interactive homepage
+- live component lab
+- component variant controls
+- copyable code snippet panel
+- block archive with preview modal
+- theme bank switcher
+- template launcher
+- four full preview template pages
+- registry-style table
+- mobile drawer, modal, and toast behavior
+
+No framework is required:
 
 - no Vite
 - no Next.js
@@ -19,22 +32,7 @@ It is intentionally dependency-free so it runs anywhere:
 - works in Termux with Python's built-in HTTP server
 - suitable for GitHub Pages
 
-The static version proves the visual system before the project expands into a shadcn-compatible registry/package structure.
-
-## Included
-
-```txt
-index.html      Saveglass dogfood homepage
-styles.css      full Saveglass theme system and component styling
-app.js          interactive slots, themes, toasts, modal, mobile drawer
-package.json    lightweight npm scripts for static serving
-LICENSE         MIT license
-.gitignore      basic ignores
-```
-
 ## Run Locally
-
-From a normal terminal:
 
 ```bash
 python -m http.server 8080
@@ -46,7 +44,7 @@ Then open:
 http://127.0.0.1:8080
 ```
 
-Or use the npm helper:
+Or:
 
 ```bash
 npm run start
@@ -67,6 +65,31 @@ Then open Android browser to:
 
 ```txt
 http://127.0.0.1:8080
+```
+
+## Routes
+
+```txt
+/                              Saveglass dogfood homepage
+/templates/dashboard.html       SaaS dashboard preview
+/templates/ai-workspace.html    AI workspace preview
+/templates/docs-manual.html     Docs/manual preview
+/templates/marketplace.html     Template marketplace preview
+```
+
+## Files
+
+```txt
+index.html                    Saveglass dogfood homepage
+styles.css                    core Saveglass theme system and components
+phase2.css                    component lab, blocks, and template page styles
+app.js                        homepage interactions
+phase2.js                     component lab and block archive interactions
+templates/template-page.js    tiny shared script for preview template pages
+templates/*.html              full static template previews
+package.json                  static server scripts
+LICENSE                       MIT license
+.gitignore                    basic ignores
 ```
 
 ## What Saveglass Is
@@ -101,36 +124,7 @@ A normal web component gets translated into the Saveglass visual world:
 | Toast | system notification |
 | Theme switcher | memory bank loader |
 
-## Interactive Features
-
-The current dogfood homepage includes:
-
-- interactive hero slot selector
-- four full theme banks
-- copy-install command with toast feedback
-- template preview modal
-- responsive mobile drawer
-- component slot grid
-- template memory bank
-- registry-style data table
-- segmented theme-load progress animation
-
-## Theme Banks
-
-Saveglass currently ships four visual banks:
-
-| Theme | Use |
-|---|---|
-| Indigo Memory | flagship dark mode for dashboards and AI tools |
-| Cyan Archive | lighter readable mode for docs and marketing |
-| Violet Slot | premium creator-tool mode |
-| Mono Save | professional neutral mode for internal tools |
-
-Theme switching is handled with CSS variables on the root class, so the whole page changes without inline color hacks.
-
 ## Design Principles
-
-Saveglass follows these rules:
 
 1. **Slot before card** — cards are saved objects, not generic rectangles.
 2. **Metadata is ornament** — slot IDs, status labels, versions, and timestamps create the style.
@@ -148,17 +142,7 @@ Moldy Pixels is planned as a three-style UI ecosystem:
 | Machine Candy UI | candy-colored molded hardware, LCD fields, appliance controls |
 | Menu Ink UI | elegant menu panels, ink frames, chapter navigation |
 
-The three kits should eventually share a common component contract while maintaining separate visual constitutions.
-
-Planned structure:
-
-```txt
-moldy-pixels/
-  saveglass/
-  machine-candy/
-  menu-ink/
-  shared/
-```
+The next build move is to use the now-proven Saveglass site architecture to create separate dogfood sections for **Machine Candy** and **Menu Ink**.
 
 ## Future Package Direction
 
@@ -175,54 +159,6 @@ packages/saveglass/
   icons/
   registry.json
 ```
-
-Expected component surface:
-
-- Button
-- Card
-- Input
-- Textarea
-- Select
-- Checkbox
-- Radio Group
-- Switch
-- Slider
-- Badge
-- Alert
-- Toast
-- Dialog
-- Sheet
-- Tabs
-- Accordion
-- Dropdown Menu
-- Command Palette
-- Table
-- Data Table
-- Sidebar
-- Navbar
-- Progress
-- Skeleton
-- Tooltip
-- Popover
-- Pricing Card
-- Hero
-- Template Card
-- Theme Switcher
-- Code Block
-- Footer
-
-## Acceptance Criteria
-
-The current Saveglass page is successful if:
-
-- the screenshot reads as memory-screen UI within three seconds
-- it does not look like generic glassmorphism
-- the hero is interactive
-- theme banks switch the whole page
-- template previews open in a modal
-- the install command copies with toast feedback
-- mobile layout remains usable
-- the component styling implies a larger library
 
 ## Deployment
 

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Moldy Pixels library parity dashboard." />
+  <title>Moldy Pixels — Library Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=4" />
+  <link rel="stylesheet" href="../phase2.css?v=1" />
+  <link rel="stylesheet" href="../shared/library.css?v=1" />
+</head>
+<body>
+  <div class="sg-root sg-theme-indigo">
+    <header class="sg-navbar">
+      <div class="sg-brand"><span class="sg-logo"></span><strong>MOLDY PIXELS</strong><span>/</span><span class="sg-meta">LIBRARY DASHBOARD</span></div>
+      <nav class="sg-navlinks"><a href="../">Hub</a><a href="../saveglass/">Saveglass</a><a href="../machine-candy/">Machine Candy</a><a href="../menu-ink/">Menu Ink</a></nav>
+      <div class="sg-actions"><span class="sg-badge">PARITY AUDIT</span></div>
+    </header>
+
+    <main>
+      <section class="sg-section hero-section">
+        <div class="sg-hero sg-panel">
+          <div class="hero-copy">
+            <p class="sg-meta">LIB-SYS-001 / INVENTORY TRUTH TABLE</p>
+            <h1>The part where the cute demo becomes a library.</h1>
+            <p class="lede">This dashboard tracks the real parity target: kits, components, blocks, templates, native components, and build status. Planned means not built yet. Prototype means visible but not registry-ready. Showcase means route-level dogfood exists.</p>
+          </div>
+          <div class="preview-panel sg-panel-solid">
+            <div class="preview-head"><div><p class="sg-meta">CURRENT REALITY</p><h2>No lying to ourselves.</h2></div><span class="sg-badge accent">AUDIT</span></div>
+            <div class="preview-body"><div id="library-kpis" class="library-kpis"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sg-section">
+        <div class="section-head"><p class="sg-meta">STYLE KITS</p><h2>Three visual systems, one shared component ambition.</h2></div>
+        <div id="kit-grid" class="library-grid"></div>
+      </section>
+
+      <section class="sg-section">
+        <div class="section-head"><p class="sg-meta">SEARCHABLE INVENTORY</p><h2>Component, block, and template target manifests.</h2></div>
+        <div class="library-toolbar"><input id="library-search" class="library-search" placeholder="Search component, block, template, status, kit..." /></div>
+        <div class="sg-panel table-shell library-matrix" id="component-table"></div>
+      </section>
+
+      <section class="sg-section">
+        <div class="section-head"><p class="sg-meta">BLOCK MANIFEST</p><h2>The section-level library target.</h2></div>
+        <div class="sg-panel table-shell library-matrix" id="block-table"></div>
+      </section>
+
+      <section class="sg-section">
+        <div class="section-head"><p class="sg-meta">TEMPLATE MANIFEST</p><h2>The full-page preview target.</h2></div>
+        <div class="sg-panel table-shell library-matrix" id="template-table"></div>
+      </section>
+
+      <section class="sg-section">
+        <div class="section-head"><p class="sg-meta">STYLE-NATIVE COMPONENTS</p><h2>The pieces that stop this from becoming skins.</h2></div>
+        <div id="native-grid" class="library-grid"></div>
+      </section>
+    </main>
+
+    <footer class="sg-footer"><span>MOLDY PIXELS</span><span>LIBRARY DASHBOARD</span><span>PARITY TARGET</span><span>NO FAKE DEPTH</span></footer>
+  </div>
+
+  <script src="../data/kits.js?v=1"></script>
+  <script src="../data/components.js?v=1"></script>
+  <script src="../data/blocks.js?v=1"></script>
+  <script src="../data/templates.js?v=1"></script>
+  <script src="../shared/render-library.js?v=1"></script>
+</body>
+</html>

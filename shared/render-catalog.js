@@ -5,7 +5,7 @@ const table = document.querySelector('[data-catalog-table]');
 const cards = document.querySelector('[data-catalog-cards]');
 const search = document.querySelector('[data-catalog-search]');
 
-const documentedComponents = ['button','card','input','badge'];
+const documentedComponents = ['button','card','input','badge','alert','dialog','tabs'];
 const componentDocs = Object.fromEntries(documentedComponents.map(id => [id, [
   ['Saveglass', `../saveglass/components/${id}/`],
   ['Machine Candy', `../machine-candy/components/${id}/`],

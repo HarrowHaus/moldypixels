@@ -1,0 +1,4 @@
+{
+  "_comment": "Measurement spec for measure.py. Keys under 'captures' are paths relative to reference/captures/. Crop boxes are [left, top, right, bottom] in capture pixels. 'palette' regions get median-cut quantization; 'geometry' entries locate the bounding box of pixels within 'tolerance' of 'target' inside 'box'. This map stays empty until real captures are committed and the one-time manual tuning pass adds entries (see CAPTURE.md) — no fabricated boxes.",
+  "captures": {}
+}

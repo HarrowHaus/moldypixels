@@ -1,5 +1,6 @@
 packages/*/dist/
 node_modules/
+.venv/
 .pnpm-store/
 .DS_Store
 test-results/

@@ -6,6 +6,7 @@
   "packageManager": "pnpm@9.12.3",
   "scripts": {
     "dev": "node packages/internal/build/build.mjs --watch",
+    "docs:dev": "echo 'docs sites are built in U12; nothing to serve yet' && exit 1",
     "build": "node packages/internal/build/build.mjs",
     "test": "pnpm lint && node packages/internal/test/smoke.mjs",
     "lint": "stylelint \"packages/*/src/**/*.css\"",

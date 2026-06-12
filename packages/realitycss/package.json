@@ -1,3 +1,21 @@
 {
-  "name": "realitycss"
+  "name": "realitycss",
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": true,
+  "exports": {
+    ".": "./dist/realitycss.min.css",
+    "./css": "./dist/realitycss.css",
+    "./expansion-pak": {
+      "import": "./dist/js/expansion-pak.js",
+      "default": "./dist/js/expansion-pak.iife.js"
+    },
+    "./modes/hardware": "./dist/modes/hardware.css"
+  },
+  "files": ["dist", "API.md", "LICENSE"],
+  "scripts": {
+    "build": "node ../../packages/internal/build/build.mjs",
+    "test": "node ../../packages/internal/test/smoke.mjs"
+  },
+  "dependencies": {}
 }

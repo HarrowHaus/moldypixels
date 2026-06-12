@@ -27,6 +27,14 @@ The pre-reset site (Saveglass / Machine Candy / Menu Ink) is preserved on branch
 
 The builder prompt assumed all dossier fonts are OFL. Verified against the google/fonts repository: all are OFL **except Ultra (Apache License 2.0)**, a fallback display face for reality.css. Logged in `meta/ASSETS.md`; no action needed (Apache 2.0 is compatible with our use).
 
+## U1 reference pipeline
+
+- Landed in two phases by owner decision (2026-06-12): pipeline first (CAPTURE.md, regions.json schema, measure.py, synthetic self-test, CI gate), captures second. The unit is **not accepted** until the owner's emulator captures are committed and `measure.py --check` reproduces `measured-values.json` from them.
+- Captures must come from the owner: they require a Dreamcast BIOS image and an SM64 ROM, which cannot be sourced or run in the build environment. Emulators specified: Flycast (VGA 640×480) and simple64 / mupen64plus + ParaLLEl-RDP.
+- Geometry measurement v1 is color-range bounding boxes (covers capsule heights and hub stagger coordinates). Corner radius and letter-spacing measurement get added during the regions.json tuning pass against real frames rather than speculated now.
+- The pipeline self-test draws its fixture in memory instead of committing a fixture PNG — same code paths proven, no binary in the repo.
+- CI installs Pillow into a venv (ubuntu runners' system Python is PEP 668 externally-managed).
+
 ## U0 build tooling
 
 - Lightning CSS is the single CSS processor (blueprint §4); esbuild builds the JS features. The `browserslist` package was added as a root devDependency to translate the browserslist query into Lightning CSS targets.

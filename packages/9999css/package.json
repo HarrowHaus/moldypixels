@@ -3,5 +3,19 @@
   "version": "0.0.0",
   "type": "module",
   "sideEffects": true,
+  "exports": {
+    ".": "./dist/9999css.min.css",
+    "./css": "./dist/9999css.css",
+    "./vmu": {
+      "import": "./dist/js/vmu.js",
+      "default": "./dist/js/vmu.iife.js"
+    },
+    "./modes/pal": "./dist/modes/pal.css"
+  },
+  "files": ["dist", "API.md", "LICENSE"],
+  "scripts": {
+    "build": "node ../../packages/internal/build/build.mjs",
+    "test": "node ../../packages/internal/test/smoke.mjs"
+  },
   "dependencies": {}
 }

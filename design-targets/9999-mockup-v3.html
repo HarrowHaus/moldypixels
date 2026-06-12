@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9999.css — mockup v3 (reference-measured)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&family=Michroma&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PALETTE — measured from real BIOS frames (CRT-photo dirty,
+   cleaned toward signal):
+   water bg     #EAF7F3 / caustic #A4D7CD #62D7D0
+   capsule ORG  #F99560 -> #F5923A   (Play pill, measured)
+   capsule MNT  #18F2C7 -> #1EDEAF   (File pill, measured)
+   capsule MAG  #F472B6 -> #EC4899   (Set pill family)
+   cobalt screen #093893 #135AA3 #1B98CA (file manager, measured)
+   ink          #2B3440  ·  ghost line #D9A8C4 / #9FD8DC
+   ============================================================ */
+:root{
+  --water:#EAF7F3; --ca1:#A4D7CD; --ca2:#62D7D0;
+  --org1:#F99560; --org2:#F5923A;
+  --mnt1:#18F2C7; --mnt2:#1EDEAF;
+  --mag1:#F584BE; --mag2:#E85A9F;
+  --cb1:#093893; --cb2:#135AA3; --cb3:#1B98CA;
+  --ink:#2B3440; --ink2:#6B7884;
+  --ghostP:#E3B5CC; --ghostC:#A6DBDF;
+  --disp:'Michroma',sans-serif; --ui:'Jura',sans-serif; --mono:'Spline Sans Mono',monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;}
+html{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Ccircle cx='10' cy='10' r='8' fill='%2362D7D0'/%3E%3Ccircle cx='7' cy='7' r='3' fill='white' opacity='.9'/%3E%3C/svg%3E") 10 10, auto;}
+
+/* THE WATER — the BIOS hub is liquid, pale aqua-white, alive */
+body{
+  min-height:100vh; color:var(--ink); font-family:var(--ui); font-weight:500;
+  font-size:15.5px; line-height:1.6; padding:0 0 90px; background:var(--water);
+  position:relative; overflow-x:hidden;
+}
+.water{position:fixed; inset:0; z-index:0; pointer-events:none; filter:url(#liquid);}
+.water i{position:absolute; border-radius:50%; opacity:.55; animation:sway 14s var(--ease) infinite alternate;}
+.water i:nth-child(1){width:55vw;height:42vw;left:-12vw;top:-8vw;background:radial-gradient(circle, var(--ca1), transparent 70%);}
+.water i:nth-child(2){width:48vw;height:40vw;right:-10vw;top:18vh;background:radial-gradient(circle, var(--ca2), transparent 70%);animation-delay:-4s;}
+.water i:nth-child(3){width:60vw;height:44vw;left:8vw;bottom:-14vw;background:radial-gradient(circle, var(--ca1), transparent 72%);animation-delay:-9s;}
+.water i:nth-child(4){width:26vw;height:22vw;right:18vw;bottom:16vh;background:radial-gradient(circle, #FBD9CB, transparent 70%);opacity:.4;animation-delay:-6s;}
+@keyframes sway{from{transform:translate(0,0) scale(1)}to{transform:translate(3vw,-2.5vw) scale(1.07)}}
+
+.wrap{max-width:980px;margin:0 auto;position:relative;z-index:1;padding:0 16px;}
+
+/* TOP STRIP — quoted: logo left, date/time right, thin rule */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:14px 16px;background:rgba(255,255,255,.75);backdrop-filter:none;
+  border-bottom:2px solid rgba(43,52,64,.12);position:relative;z-index:1;}
+.bar .logo{font-family:var(--disp);font-size:15px;letter-spacing:.06em;}
+.bar .dt{font-family:var(--ui);font-weight:600;font-size:13.5px;letter-spacing:.12em;color:var(--ink);}
+
+h2{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.16em;color:var(--ink2);
+  text-transform:uppercase;margin:48px 0 16px;}
+.note{font-size:12.5px;color:var(--ink2);margin-top:8px;}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+
+/* CANDY CAPSULES — the measured interactive vocabulary */
+.cap{font-family:var(--ui);font-weight:700;font-size:14.5px;letter-spacing:.08em;color:#fff;
+  border:none;border-radius:999px;padding:12px 26px;position:relative;
+  text-shadow:0 1px 2px rgba(0,0,0,.18);
+  box-shadow:0 4px 12px rgba(43,52,64,.22), inset 0 1.5px 0 rgba(255,255,255,.5);
+  transition:transform .35s var(--ease), filter .35s var(--ease);}
+.cap:hover{transform:translateY(-2px) scale(1.02);}
+.cap:active{transform:translateY(1px) scale(.99);filter:brightness(.92);}
+.cap.org{background:linear-gradient(180deg,var(--org1),var(--org2));}
+.cap.mnt{background:linear-gradient(180deg,var(--mnt1),var(--mnt2));color:#0A4438;text-shadow:none;}
+.cap.mag{background:linear-gradient(180deg,var(--mag1),var(--mag2));}
+.cap:focus-visible{outline:3px solid var(--cb3);outline-offset:3px;}
+
+/* THE MAIN MENU — ghost outline icons that FLOOD with color on selection */
+.hub{display:grid;gap:8px 16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));padding:10px 0 4px;}
+.hubitem{display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 10px 24px;border-radius:22px;
+  background:transparent;border:none;transition:background .4s var(--ease);}
+.hubitem svg{width:96px;height:76px;}
+.hubitem svg *{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke .35s var(--ease);}
+.hubitem .lp{stroke:var(--ghostP);} .hubitem .lc{stroke:var(--ghostC);}
+.hubitem .cap{pointer-events:none;}
+.hubitem:not(.sel) .cap{background:rgba(255,255,255,.65);color:var(--ink2);text-shadow:none;
+  box-shadow:inset 0 0 0 2px rgba(43,52,64,.12);}
+.hubitem.sel .lp, .hubitem.sel .lc{stroke:var(--flood);}
+.hubitem.sel{background:rgba(255,255,255,.5);}
+.hubitem:hover{background:rgba(255,255,255,.45);}
+
+/* COBALT SCREEN — measured file-manager field */
+.cobalt{border-radius:18px;padding:20px;color:#fff;position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 70% at 50% -10%, var(--cb3), transparent 55%),
+    linear-gradient(180deg, var(--cb2) 0%, var(--cb1) 80%);
+  box-shadow:0 10px 26px rgba(9,56,147,.35), inset 0 1px 0 rgba(255,255,255,.25);}
+.cobalt .hint{font-family:var(--ui);font-weight:500;font-size:12px;letter-spacing:.06em;color:#CFE4FF;margin-bottom:14px;}
+.tiles{display:flex;gap:9px;overflow:hidden;padding-bottom:4px;
+  mask-image:linear-gradient(to right,#000 88%,transparent);}
+.tile{flex:none;width:64px;height:64px;border-radius:10px;display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(180deg,#1B3166,#0E2354);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 -2px 5px rgba(0,0,0,.4);
+  border:none;transition:transform .3s var(--ease), box-shadow .3s var(--ease);}
+.tile.sel{transform:translateY(-4px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 0 0 3px var(--mnt1), 0 6px 14px rgba(0,0,0,.4);}
+.cobalt .meta{margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;line-height:1.75;color:#EAF2FF;}
+.cobalt .meta b{color:#fff;font-weight:500;}
+.cobalt .all{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:none;
+  font-family:var(--disp);font-size:9px;color:#0A4438;display:grid;place-items:center;letter-spacing:.04em;
+  background:linear-gradient(180deg,var(--mnt1),var(--mnt2));
+  box-shadow:0 3px 9px rgba(0,0,0,.35), inset 0 1.5px 0 rgba(255,255,255,.5);}
+
+/* CD PLAYER — embossed pale numerals + glossy dark control strip */
+.cd{border-radius:18px;padding:24px 20px 18px;text-align:center;
+  background:linear-gradient(180deg,#FDFEFF,#EDF2F6);
+  box-shadow:0 8px 22px rgba(43,52,64,.16), inset 0 1.5px 0 #fff;}
+.cd .nums{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;}
+.cd .n{font-family:var(--ui);font-weight:700;font-size:clamp(44px,9vw,64px);letter-spacing:.04em;color:#D7DEE6;
+  text-shadow:0 1px 0 #fff, 0 -1px 1px rgba(43,52,64,.35);}
+.cd .lab{display:inline-block;font-family:var(--disp);font-size:9px;letter-spacing:.18em;color:#fff;
+  padding:5px 14px;border-radius:999px;margin-bottom:6px;
+  background:linear-gradient(90deg,var(--ca2),var(--mag2));
+  text-shadow:0 1px 1px rgba(0,0,0,.2);}
+.cd .strip{margin-top:18px;display:inline-flex;gap:4px;padding:8px 10px;border-radius:999px;
+  background:linear-gradient(180deg,#3A4250,#22272F);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 4px 10px rgba(43,52,64,.3);}
+.cd .strip button{width:38px;height:30px;border:none;border-radius:7px;color:#C9D4DE;font-size:12px;
+  background:linear-gradient(180deg,#454E5C,#2B313B);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);}
+.cd .strip button:active{background:#22272F;box-shadow:inset 0 2px 4px rgba(0,0,0,.5);}
+
+/* forms in the v3 language */
+.panel{border-radius:18px;padding:22px;background:rgba(255,255,255,.78);
+  box-shadow:0 8px 22px rgba(43,52,64,.14), inset 0 1.5px 0 #fff;}
+.fl label{display:block;font-weight:700;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:7px;}
+.inp{width:100%;font-family:var(--ui);font-weight:600;font-size:15px;color:var(--ink);
+  border:none;border-radius:12px;padding:13px 15px;background:#fff;
+  box-shadow:inset 0 0 0 2px rgba(43,52,64,.14), inset 0 2px 4px rgba(43,52,64,.08);}
+.inp:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--mnt2), inset 0 2px 4px rgba(43,52,64,.08);}
+.prog{height:14px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 2px rgba(43,52,64,.12);overflow:hidden;}
+.prog i{display:block;height:100%;width:62%;border-radius:999px;
+  background:linear-gradient(180deg,var(--org1),var(--org2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.5);}
+.swr{display:flex;gap:12px;flex-wrap:wrap;}
+.swc{width:88px;border-radius:12px;overflow:hidden;font-family:var(--mono);font-size:10px;
+  box-shadow:0 4px 12px rgba(43,52,64,.16);}
+.swc i{display:block;height:46px;}
+.swc span{display:block;padding:6px 8px;color:var(--ink2);background:rgba(255,255,255,.9);}
+.footer{margin-top:64px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink2);text-align:center;}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:1ms!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="liquid"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.017" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="42"/></filter></svg>
+<div class="water"><i></i><i></i><i></i><i></i></div>
+
+<div class="bar"><span class="logo">9999.css</span><span class="dt">2026/06/12&nbsp;&nbsp;14:32</span></div>
+
+<div class="wrap">
+
+<h2>The hub — selection floods with color</h2>
+<div class="hub">
+  <button class="hubitem" style="--flood:var(--org2)">
+    <svg viewBox="0 0 96 76"><path class="lp" d="M14 38 q-8 22 4 26 q9 3 14-10 h32 q5 13 14 10 q12-4 4-26 q-5-16-14-18 h-40 q-9 2-14 18z"/><circle class="lc" cx="30" cy="38" r="7"/><circle class="lc" cx="64" cy="33" r="4"/><circle class="lc" cx="72" cy="41" r="4"/></svg>
+    <span class="cap org">PLAY</span>
+  </button>
+  <button class="hubitem sel" style="--flood:var(--mnt2)">
+    <svg viewBox="0 0 96 76"><rect class="lc" x="26" y="8" width="44" height="60" rx="14"/><rect class="lp" x="34" y="18" width="28" height="20" rx="4"/><circle class="lp" cx="48" cy="52" r="6"/></svg>
+    <span class="cap mnt">FILES</span>
+  </button>
+  <button class="hubitem" style="--flood:var(--mag2)">
+    <svg viewBox="0 0 96 76"><circle class="lp" cx="48" cy="40" r="26"/><path class="lc" d="M48 24 v16 l11 8"/><path class="lp" d="M30 12 l-7-6 M66 12 l7-6"/></svg>
+    <span class="cap mag">CLOCK</span>
+  </button>
+</div>
+<p class="note">Quoted from the real main menu: unselected items are ghost-pale line icons; the chosen one floods with saturated color. Labels are candy capsules — coral #F99560→#F5923A and mint #18F2C7→#1EDEAF, measured off the actual Play/File pills.</p>
+
+<h2>File manager — the cobalt screen</h2>
+<div class="cobalt">
+  <button class="all">ALL</button>
+  <div class="hint">Select file(s) and press the button.</div>
+  <div class="tiles">
+    <button class="tile sel">🐣</button><button class="tile">🏁</button><button class="tile">👾</button>
+    <button class="tile">🎵</button><button class="tile">⚽</button><button class="tile">🛹</button><button class="tile">🐠</button>
+  </div>
+  <div class="meta"><b>ADVENTURE</b> &nbsp;·&nbsp; ADVNTR_0000&nbsp;A<br>06/12/2026 14:32 &nbsp;·&nbsp; 12 block(s)</div>
+</div>
+<p class="note">Measured field: #093893 → #135AA3 with a #1B98CA glow at the top. Deep saturated cobalt, white utility text, mono metadata — nothing sage about it.</p>
+
+<h2>Sound — embossed numerals, glossy strip</h2>
+<div class="cd">
+  <div class="nums">
+    <div><span class="lab">TRACK</span><div class="n">02</div></div>
+    <div><span class="lab">TIME</span><div class="n">00:03</div></div>
+  </div>
+  <div class="strip">
+    <button>⏮</button><button>■</button><button>▶</button><button>⏭</button><button>↺</button>
+  </div>
+</div>
+
+<h2>Capsule buttons</h2>
+<div class="row">
+  <button class="cap org">SAVE FILE</button>
+  <button class="cap mnt">OPTIONS</button>
+  <button class="cap mag">SETTINGS</button>
+</div>
+
+<h2>Forms + progress</h2>
+<div class="panel">
+  <div class="grid">
+    <div class="fl"><label>Player name</label><input class="inp" value="BUG"></div>
+    <div class="fl"><label>Region</label><input class="inp" value="NTSC-U" readonly></div>
+  </div>
+  <div style="margin-top:18px"><div class="prog"><i></i></div></div>
+</div>
+
+<h2>Measured palette</h2>
+<div class="swr">
+  <div class="swc"><i style="background:linear-gradient(180deg,#F99560,#F5923A)"></i><span>capsule org</span></div>
+  <div class="swc"><i style="background:linear-gradient(180deg,#18F2C7,#1EDEAF)"></i><span>capsule mnt</span></div>
+  <div class="swc"><i style="background:linear-gradient(180deg,#F584BE,#E85A9F)"></i><span>capsule mag</span></div>
+  <div class="swc"><i style="background:linear-gradient(180deg,#1B98CA,#093893)"></i><span>cobalt scrn</span></div>
+  <div class="swc"><i style="background:#A4D7CD"></i><span>water</span></div>
+</div>
+
+<div class="footer">9999.css · MOCKUP V3 · BUILT FROM MEASURED REFERENCE FRAMES · NOT AFFILIATED WITH SEGA</div>
+</div>
+</body>
+</html>

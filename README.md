@@ -1,70 +1,45 @@
-# Moldy Pixels
+# MOLDY PIXELS
 
-**Moldy Pixels** is now a console CSS framework monorepo, not the old three-style static dogfood site.
+**Moldy Pixels** is a family of console-inspired CSS frameworks built reference-first: real screens are captured and measured before any component is styled. The first two members are **9999.css** (Dreamcast-inspired, prefix `.dc-`) and **reality.css** (N64-inspired, prefix `.r64-`), both plain-CSS frameworks with one optional JS feature each.
 
-This repo is being rebuilt around two publishable, plain-CSS frameworks:
+## Status — honest
 
-```txt
-9999.css      Dreamcast-inspired CSS framework
-reality.css   N64-inspired CSS framework
-```
+Pre-release. Nothing is published to npm. No component code exists yet.
 
-The old Saveglass / Machine Candy / Menu Ink site has been preserved on the `archive/pre-reset` branch before this reset.
+What the repo currently contains, exactly:
 
-## Phase
+- the engineering blueprint and both design dossiers (`meta/`)
+- the three design-target mockups (`design-targets/`)
+- the U0 monorepo scaffold: two package shells with locked `@layer` order and placeholder CSS, a working Lightning CSS + esbuild build, stylelint wiring (token rule stubbed, enforced from U2), smoke checks, changesets init, and a CI workflow
+- the old pre-reset site, preserved on the `archive/pre-reset` branch
 
-Current phase: **U0 — repo scaffold**.
+No badges for things that don't run; no feature lists for things that don't exist.
 
-U0 is intentionally boring. It creates the publishable monorepo shape, build commands, package shells, quality-gate placeholders, law documents, and visual targets. It does **not** implement the real component grammar yet.
-
-## Architecture
+## Repo map
 
 ```txt
 packages/
-  9999css/
-  realitycss/
-  internal/
-
+  9999css/          Dreamcast framework package shell (src/, js/vmu.js, API.md)
+  realitycss/       N64 framework package shell (src/, js/expansion-pak.js, API.md)
+  internal/         private, never published
+    build/          shared Lightning CSS + esbuild build script
+    lint/           stylelint config + token-only-color rule stub
+    test/           U0 smoke checks (real harness lands in U5)
 docs/
-  9999/
-  reality/
-
-examples/
-integrations/
-reference/
-meta/
-design-targets/
-codexhandoff/
-.github/workflows/
+  9999/             Astro docs site (U12)
+  reality/          Astro docs site (U12)
+examples/           plain-HTML templates (U11)
+integrations/       html / react / next / astro smoke apps (U13)
+reference/          capture + measurement pipeline (U1)
+design-targets/     mockup HTMLs — visual targets, not shipped code
+meta/               law documents, decisions log, asset provenance
+.changeset/         changesets versioning
+.github/workflows/  CI: install → build → test
 ```
 
-## Framework packages
+## How the build works
 
-### `packages/9999css`
-
-Dreamcast-inspired CSS framework. Public prefix: `.dc-`.
-
-### `packages/realitycss`
-
-N64-inspired CSS framework. Public prefix: `.r64-`.
-
-## Layer contract
-
-Every package begins with the locked cascade layer order:
-
-```css
-@layer reset, tokens, base, primitives, components, utilities;
-```
-
-Rules:
-
-- `tokens.css` is the only source file allowed to contain raw color values.
-- Every other CSS file must use custom properties.
-- Mode files are token swaps only.
-- Core CSS has zero runtime dependencies.
-- Class names are the public API.
-
-## Commands
+pnpm workspaces monorepo. `pnpm build` runs `packages/internal/build/build.mjs`, which bundles each package's `src/index.css` with **Lightning CSS** (browserslist targets: last 2 evergreen + Safari ≥ 16.4) into `dist/<name>.css` and `dist/<name>.min.css` (+ sourcemap), and builds each JS feature with **esbuild** to ESM + IIFE. `pnpm test` lints and runs the smoke checks. Versioning/publishing is wired through **changesets** but nothing is released yet.
 
 ```bash
 pnpm install
@@ -72,39 +47,18 @@ pnpm build
 pnpm test
 ```
 
-## Handoff files
+## Law documents
 
-Raw handoff archive:
+- [`meta/console-family-engineering-blueprint.md`](meta/console-family-engineering-blueprint.md) — engineering law
+- [`meta/9999css-dossier.md`](meta/9999css-dossier.md) — 9999.css aesthetic law
+- [`meta/realitycss-dossier.md`](meta/realitycss-dossier.md) — reality.css aesthetic law
+- [`meta/moldypixels-builder-prompt-phase1.md`](meta/moldypixels-builder-prompt-phase1.md) — Phase 1 scope
+- [`meta/DECISIONS.md`](meta/DECISIONS.md) — decisions log
 
-```txt
-codexhandoff/Buildmoldypixels.zip
-codexhandoff/console-family-engineering-blueprint.md
-```
+## Legal
 
-Working law docs:
+Not affiliated with or endorsed by SEGA or Nintendo. Fan-made homage. All fonts and assets open-licensed; provenance logged in [`meta/ASSETS.md`](meta/ASSETS.md).
 
-```txt
-meta/console-family-engineering-blueprint.md
-meta/9999css-dossier.md
-meta/realitycss-dossier.md
-meta/moldypixels-builder-prompt-phase1.md
-```
+## License
 
-Visual targets:
-
-```txt
-design-targets/9999-mockup-v3.html
-design-targets/9999-mockup-v4.html
-design-targets/reality-mockup-v3-max.html
-```
-
-## What is intentionally not here yet
-
-- no fake CLI
-- no fake npm availability claims
-- no finished components
-- no docs homepage
-- no registry output
-- no publishing workflow that actually publishes
-
-Those belong to later U-series units after acceptance gates exist.
+[MIT](LICENSE)

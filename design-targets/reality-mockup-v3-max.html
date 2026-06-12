@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>reality.css — maximalist mockup v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fredoka:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky1:#2E5BEE; --sky2:#3169F7; --sky3:#7FA0FB;
+  --fog1:#A2ACE4; --fog2:#D4D7F5;
+  --g1:#F2DE7A; --g2:#E7D263; --g3:#C9A23F; --g4:#8A6D1F;
+  --red:#DF0107; --grn:#0DA355; --yel:#F2D518; --org:#E55B25; --blu:#1F49C7;
+  --teal1:#00A88F; --teal2:#007E6B;
+  --cream:#FFF8E8; --inkD:#241D10;
+  --disp:'Alfa Slab One',serif; --ui:'Fredoka',sans-serif; --mono:'IBM Plex Mono',monospace;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;}
+html{scroll-snap-type:y proximity;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M10 2 L14.5 15 L17 11 L23 17.5 L25.5 15 L19.5 8.5 L24 6.5 Z' fill='white' stroke='%23241D10' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E") 10 2, auto;}
+body{font-family:var(--ui); font-weight:500; font-size:15.5px; line-height:1.55; color:var(--inkD);}
+.screen{min-height:100vh; min-height:100svh; position:relative; overflow:hidden; scroll-snap-align:start;
+  display:flex; flex-direction:column;}
+
+/* THE WORLD */
+.sky{background:linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 45%, var(--sky3) 78%, var(--fog2) 100%);}
+.cloud{position:absolute; z-index:0; width:200px; height:54px; animation:cl 38s linear infinite;}
+.cloud i{position:absolute; background:#fff; border-radius:50%;}
+.cloud i:nth-child(1){width:90px;height:54px;left:30px;top:0;}
+.cloud i:nth-child(2){width:64px;height:42px;left:0;top:14px;}
+.cloud i:nth-child(3){width:70px;height:44px;right:0;top:12px;}
+.c1{top:9%; left:-220px;}
+.c2{top:24%; left:-220px; animation-delay:-17s; scale:.66;}
+.c3{top:4%; left:-220px; animation-delay:-29s; scale:1.25;}
+@keyframes cl{to{translate:calc(100vw + 280px) 0;}}
+.hills{position:absolute; left:0; right:0; bottom:0; height:30vh; z-index:0; pointer-events:none;}
+.hill{position:absolute; bottom:0;}
+.hA{left:-6%; width:64%; height:88%;
+  clip-path:polygon(0 100%, 8% 34%, 26% 58%, 47% 8%, 68% 62%, 84% 30%, 100% 100%);
+  background:linear-gradient(118deg, #3BC774 0 32%, #2AA75D 32% 55%, #1E8A4A 55% 78%, #177A40 78% 100%);}
+.hB{right:-8%; width:58%; height:70%;
+  clip-path:polygon(0 100%, 14% 44%, 36% 70%, 58% 14%, 80% 56%, 100% 26%, 100% 100%);
+  background:linear-gradient(244deg, #2FB565 0 36%, #239750 36% 64%, #197F41 64% 100%);}
+.fogbank{position:absolute; left:0; right:0; bottom:0; height:24vh; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, transparent, var(--fog1) 55%, var(--fog2));}
+
+/* DISPLAY TYPE IS AN EVENT */
+.hero{position:relative; z-index:2; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1vh; padding:0 12px; text-align:center;}
+.title{font-family:var(--disp); font-weight:400; font-size:clamp(46px,11.5vw,116px); line-height:.95;}
+.title span{display:inline-block; -webkit-text-stroke:2.5px #fff; paint-order:stroke fill;
+  text-shadow:2px 2px 0 var(--g1),3px 3px 0 var(--g2),5px 5px 0 var(--g3),7px 7px 0 var(--g3),9px 9px 0 var(--g4),12px 14px 22px rgb(36 29 16 / .45);
+  animation:dance 2.6s var(--spring) infinite alternate;}
+.title span:nth-child(5n+1){color:var(--red); rotate:-7deg;}
+.title span:nth-child(5n+2){color:var(--blu); rotate:5deg; animation-delay:-.4s;}
+.title span:nth-child(5n+3){color:var(--yel); rotate:-4deg; animation-delay:-.9s;}
+.title span:nth-child(5n+4){color:var(--grn); rotate:6deg; animation-delay:-1.3s;}
+.title span:nth-child(5n+5){color:var(--org); rotate:-6deg; animation-delay:-1.7s;}
+@keyframes dance{from{translate:0 0}to{translate:0 -7px}}
+.sub{font-family:var(--disp); font-size:clamp(13px,2.6vw,19px); color:#fff; letter-spacing:.1em; margin-top:2vh;
+  text-shadow:1.5px 1.5px 0 var(--inkD), 3px 3px 0 var(--g4);}
+.pstart{font-family:var(--disp); font-size:clamp(15px,3vw,22px); letter-spacing:.16em; color:var(--yel); margin-top:4vh;
+  -webkit-text-stroke:1.5px var(--inkD); paint-order:stroke fill;
+  text-shadow:2px 2px 0 var(--inkD), 4px 5px 10px rgb(0 0 0/.3); animation:pp 1.5s var(--spring) infinite;}
+@keyframes pp{0%,100%{opacity:1; scale:1}50%{opacity:.35; scale:.97}}
+.star{position:absolute; z-index:1; font-size:clamp(40px,7vw,76px); color:var(--yel);
+  -webkit-text-stroke:2px var(--inkD); paint-order:stroke fill;
+  text-shadow:3px 3px 0 var(--g3), 5px 6px 12px rgb(0 0 0/.3); animation:spinstar 3.4s linear infinite;}
+@keyframes spinstar{to{transform:rotateY(360deg)}}
+.st1{left:8%; top:18%;} .st2{right:10%; top:34%; animation-delay:-1.2s;}
+.hudbar{position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:space-between; padding:18px 20px;
+  font-family:var(--disp); font-size:clamp(20px,4vw,30px);}
+.hudbar span{color:var(--yel); -webkit-text-stroke:1.8px var(--inkD); paint-order:stroke fill; text-shadow:2.5px 2.5px 0 var(--inkD);}
+.hudbar .w{color:#fff;}
+
+/* SCREEN 2 — SELECT FILE */
+.s-file{background:linear-gradient(180deg, var(--teal1) 0%, var(--teal2) 100%);}
+.sf-title{font-family:var(--disp); text-align:center; padding:7vh 12px 4vh; font-size:clamp(30px,7vw,58px); color:#fff;
+  text-shadow:2px 2px 0 var(--g2), 4px 4px 0 var(--g3), 6px 6px 0 var(--g4), 8px 10px 16px rgb(0 0 0/.35);}
+.files{position:relative; z-index:2; display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  max-width:820px; width:100%; margin:0 auto; padding:0 18px;}
+.slab{border:none; border-radius:16px; padding:20px 18px 16px; text-align:left;
+  background:linear-gradient(180deg,#FFFDF4,var(--cream));
+  box-shadow:0 7px 0 #D9C9A0, 0 14px 22px rgb(0 0 0/.28);
+  transition:transform .16s var(--spring), box-shadow .16s var(--spring);}
+.slab:hover{transform:translateY(-5px) rotate(-1deg); box-shadow:0 12px 0 #D9C9A0, 0 20px 26px rgb(0 0 0/.3);}
+.slab:active{transform:translateY(4px) scale(1.05,.93); box-shadow:0 2px 0 #D9C9A0, 0 6px 10px rgb(0 0 0/.25);}
+.slab .nm{font-family:var(--disp); font-size:21px;}
+.slab .stars{color:var(--g3); font-size:16px; letter-spacing:.14em; margin:8px 0 6px; text-shadow:1px 1px 0 rgb(36 29 16/.25);}
+.slab .stat{font-family:var(--mono); font-size:11.5px; color:#7A6C4D;}
+.slab.sel{box-shadow:0 7px 0 #D9C9A0, 0 14px 22px rgb(0 0 0/.28), 0 0 0 5px var(--yel), 0 0 0 8px var(--inkD);}
+.slab.new{display:grid; place-items:center; min-height:128px; font-family:var(--disp); font-size:19px; color:#fff;
+  background:linear-gradient(180deg, #15B398, #0A8B74); box-shadow:0 7px 0 #00513F, 0 14px 22px rgb(0 0 0/.28);
+  text-shadow:2px 2px 0 #00513F;}
+.tabs{position:relative; z-index:2; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; padding:5vh 16px 9vh;}
+.tab{font-family:var(--disp); font-size:14px; color:#fff; border:none; border-radius:13px; padding:13px 24px;
+  text-shadow:1.5px 1.5px 0 rgb(0 0 0/.4); transition:transform .14s var(--spring), box-shadow .14s var(--spring);}
+.tab:active{transform:translateY(4px) scale(1.06,.92);}
+.tA{background:linear-gradient(180deg,#3E66E8,var(--blu)); box-shadow:0 6px 0 #12296F;}
+.tB{background:linear-gradient(180deg,#19BE71,var(--grn)); box-shadow:0 6px 0 #03512A;}
+.tC{background:linear-gradient(180deg,#FFE14A,var(--yel)); color:var(--inkD); text-shadow:none; box-shadow:0 6px 0 #8F7C00;}
+.tS{background:linear-gradient(180deg,#F4543B,var(--red)); box-shadow:0 6px 0 #6E0103;}
+.tG{background:linear-gradient(165deg,#8A6D1F 0%,#E7D263 45%,#B08F2C 60%,#8A6D1F 100%); color:var(--inkD); text-shadow:none; box-shadow:0 6px 0 #4F3E10;}
+.s-file .fogbank{height:14vh; opacity:.55;}
+
+/* SCREEN 3 — POWER / HUD */
+.s-hudw{align-items:center; justify-content:center; gap:5vh; text-align:center; padding:9vh 16px;}
+.disc-row{position:relative; z-index:2; display:flex; gap:7vw; align-items:center; justify-content:center; flex-wrap:wrap;}
+.disc{width:clamp(132px,24vw,180px); aspect-ratio:1; border-radius:50%; position:relative;
+  background:conic-gradient(from -90deg, #2FA0E8 0 45deg, #2487E0 45deg 90deg, #1E76D6 90deg 135deg, #1A66CB 135deg 180deg, #1656BD 180deg 225deg, #134AB0 225deg 270deg, #25304B 270deg 315deg, #1B2438 315deg 360deg);
+  box-shadow:0 0 0 7px var(--inkD), 0 0 0 11px #fff, 0 10px 0 11px rgb(36 29 16/.35), 0 18px 26px rgb(0 0 0/.35);}
+.disc::before{content:''; position:absolute; inset:0; border-radius:50%;
+  background:repeating-conic-gradient(from -90deg, transparent 0 43deg, var(--inkD) 43deg 45deg);}
+.disc::after{content:'POWER'; position:absolute; inset:0; display:grid; place-items:center;
+  font-family:var(--disp); font-size:clamp(15px,3vw,21px); color:#fff;
+  -webkit-text-stroke:1.4px var(--inkD); paint-order:stroke fill; text-shadow:2px 2px 0 var(--inkD);}
+.counters{position:relative; z-index:2; display:flex; flex-direction:column; gap:1.5vh; font-family:var(--disp);
+  font-size:clamp(26px,5.5vw,40px); text-align:left;}
+.counters span{color:var(--yel); -webkit-text-stroke:2px var(--inkD); paint-order:stroke fill; text-shadow:3px 3px 0 var(--inkD);}
+.counters .w{color:#fff;}
+.meter{position:relative; z-index:2; width:min(86vw,480px); height:30px; border-radius:999px;
+  background:#1B2438; box-shadow:0 0 0 4px var(--inkD), 0 0 0 7px #fff, 0 8px 0 7px rgb(36 29 16/.3); overflow:hidden;}
+.meter i{display:block; height:100%; width:66%;
+  background:repeating-linear-gradient(90deg, #19BE71 0 34px, #0DA355 34px 38px);}
+.gamehint{position:relative; z-index:2; font-family:var(--disp); font-size:13px; letter-spacing:.1em; color:#fff;
+  text-shadow:1.5px 1.5px 0 var(--inkD);}
+
+/* SCREEN 4 — COURSE SELECT */
+.s-course{background:linear-gradient(180deg, var(--sky2), var(--sky3) 70%, var(--fog2));}
+.coursewrap{position:relative; z-index:2; flex:1; display:flex; flex-direction:column; justify-content:center; gap:3.5vh; padding:8vh 18px;}
+.course-title{font-family:var(--disp); font-size:clamp(24px,5.5vw,40px); color:#fff; text-align:center;
+  text-shadow:2px 2px 0 var(--g2), 4px 4px 0 var(--g4), 6px 8px 14px rgb(0 0 0/.35);}
+.menu{max-width:440px; width:100%; margin:0 auto;}
+.menu button{display:flex; align-items:center; gap:14px; width:100%; border:none; text-align:left;
+  font-family:var(--disp); font-size:clamp(16px,3.4vw,21px); color:#fff;
+  background:none; padding:11px 8px; -webkit-text-stroke:1.2px var(--inkD); paint-order:stroke fill;
+  text-shadow:2px 2px 0 var(--inkD);}
+.menu .ar{visibility:hidden; color:var(--yel);}
+.menu .cur{color:var(--yel);}
+.menu .cur .ar{visibility:visible; animation:hop .5s var(--spring) infinite alternate;}
+@keyframes hop{from{translate:0 0}to{translate:8px 0}}
+.dlg{position:relative; z-index:2; max-width:560px; width:calc(100% - 36px); margin:0 auto 10vh; border-radius:18px;
+  background:rgb(20 28 58 / .88); color:#fff; padding:20px 22px 26px;
+  box-shadow:0 0 0 4px #fff, 0 0 0 8px rgb(20 28 58/.5), 0 14px 26px rgb(0 0 0/.4); font-size:16px;}
+.dlg .who{position:absolute; top:-17px; left:18px; font-family:var(--disp); font-size:13px; color:#fff;
+  background:linear-gradient(180deg,#F4543B,var(--red)); border-radius:11px; padding:7px 16px;
+  box-shadow:0 5px 0 #6E0103; text-shadow:1.5px 1.5px 0 rgb(0 0 0/.4);}
+.dlg .cont{position:absolute; right:18px; bottom:10px; color:var(--yel); animation:hop .55s var(--spring) infinite alternate;}
+
+.s-notes{background:var(--cream); padding:58px 20px;}
+.notes{max-width:660px; margin:0 auto; font-family:var(--mono); font-size:12px; line-height:2; color:#6B5E41;}
+.notes b{color:var(--inkD); font-weight:500;}
+.notes .t{font-family:var(--disp); font-size:13px; letter-spacing:.1em; color:var(--inkD); margin-bottom:16px;}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:1ms!important}}
+</style>
+</head>
+<body>
+
+<!-- SCREEN 1 · TITLE -->
+<section class="screen sky">
+  <div class="hudbar"><span>★<span class="w">×</span>120</span><span>●<span class="w">×</span>07</span></div>
+  <div class="cloud c1"><i></i><i></i><i></i></div>
+  <div class="cloud c2"><i></i><i></i><i></i></div>
+  <div class="cloud c3"><i></i><i></i><i></i></div>
+  <span class="star st1">★</span><span class="star st2">★</span>
+  <div class="hero">
+    <div class="title"><span>R</span><span>E</span><span>A</span><span>L</span><span>I</span><span>T</span><span>Y</span></div>
+    <div class="title" style="font-size:clamp(30px,7vw,72px)"><span>.</span><span>C</span><span>S</span><span>S</span></div>
+    <div class="sub">AN N64-INSPIRED CSS FRAMEWORK</div>
+    <div class="pstart">PRESS START</div>
+  </div>
+  <div class="hills"><div class="hill hA"></div><div class="hill hB"></div></div>
+  <div class="fogbank"></div>
+</section>
+
+<!-- SCREEN 2 · SELECT FILE -->
+<section class="screen s-file">
+  <div class="sf-title">SELECT FILE</div>
+  <div class="files">
+    <button class="slab sel"><div class="nm">FILE A</div><div class="stars">★ ★ ★ ★ ★ ★ ★ ★</div><div class="stat">120 STARS · 14:32 PLAYED</div></button>
+    <button class="slab"><div class="nm">FILE B</div><div class="stars">★ ★ ★</div><div class="stat">31 STARS · 02:10 PLAYED</div></button>
+    <button class="slab new">NEW GAME</button>
+  </div>
+  <div class="tabs">
+    <button class="tab tA">SCORE</button>
+    <button class="tab tB">COPY</button>
+    <button class="tab tC">ERASE</button>
+    <button class="tab tS">SOUND</button>
+    <button class="tab tG">GOLD CART</button>
+  </div>
+  <div class="fogbank"></div>
+</section>
+
+<!-- SCREEN 3 · POWER / HUD -->
+<section class="screen sky s-hudw">
+  <div class="cloud c1" style="top:7%"><i></i><i></i><i></i></div>
+  <div class="cloud c3" style="top:26%"><i></i><i></i><i></i></div>
+  <div class="disc-row">
+    <div class="disc"></div>
+    <div class="counters">
+      <span>★<span class="w">×</span>120</span>
+      <span>●<span class="w">×</span>07</span>
+    </div>
+  </div>
+  <div class="meter"><i></i></div>
+  <div class="gamehint">POWER DISC = ONE CONIC-GRADIENT · METER = ONE REPEATING-GRADIENT</div>
+  <div class="hills" style="height:22vh"><div class="hill hA" style="width:72%"></div><div class="hill hB"></div></div>
+  <div class="fogbank"></div>
+</section>
+
+<!-- SCREEN 4 · COURSE SELECT -->
+<section class="screen s-course">
+  <div class="cloud c2" style="top:8%"><i></i><i></i><i></i></div>
+  <div class="coursewrap">
+    <div class="course-title">COURSE SELECT</div>
+    <div class="menu">
+      <button><span class="ar">▶</span> 1 · BOB-OMB FIELD</button>
+      <button class="cur"><span class="ar">▶</span> 2 · WHOMP FORTRESS</button>
+      <button><span class="ar">▶</span> 3 · COOL MOUNTAIN</button>
+      <button><span class="ar">▶</span> 4 · HAUNTED MANOR</button>
+    </div>
+    <div class="dlg"><span class="who">LAKITU CAM</span>
+      Every screen is a world: sky, clouds, faceted hills, lavender fog. The display type dances per-letter over a gold extrusion. The cursor is a glove, the ▶ hops, the slabs squash. Saturation is never apologized for.
+      <span class="cont">▼</span>
+    </div>
+  </div>
+  <div class="fogbank" style="height:30vh"></div>
+</section>
+
+<!-- ANALYSIS APPENDIX -->
+<section class="s-notes">
+  <div class="notes">
+    <div class="t">MAXIMALIST PASS — ANALYSIS NOTES</div>
+    <b>01 ·</b> Daylight canonical (measurement-driven reversal): sky #3169F7, lavender fog #A2ACE4→#D4D7F5. Quote the screens, not the plastic. Charcoal becomes staged "hardware mode."<br>
+    <b>02 ·</b> Display type rebuilt from the measured logo: per-letter primaries (#DF0107 #1F49C7 #F2D518 #0DA355 #E55B25), white stroke via paint-order, GOLD extrusion steps (#F2DE7A→#8A6D1F), per-letter rotation + idle dance.<br>
+    <b>03 ·</b> The world is always present: drifting cloud clusters, clip-path faceted hills with hard-stop gradient facets (painted vertex light), fog bank on every horizon.<br>
+    <b>04 ·</b> Quoted artifacts: SELECT FILE slabs (cream, warm extruded base, star rows, yellow+ink selection ring), SCORE/COPY/ERASE tabs in controller primaries + gold cart, 8-wedge POWER disc (one conic-gradient + repeating-conic separators), outlined ×N counters, hopping ▶, bouncing ▼.<br>
+    <b>05 ·</b> Chunk floor held: nothing thinner than 3px, all display text dark-outlined, springs on every interaction, reduced-motion collapses everything to fades.<br>
+    <b>06 ·</b> Next pass: clean emulator captures of the real SELECT FILE + title screens — re-measure the teal field, slab geometry, star spacing — then port these screens into the docs-site chrome.<br><br>
+    REALITY.CSS · MAXIMALIST MOCKUP V3 · NOT AFFILIATED WITH NINTENDO
+  </div>
+</section>
+</body>
+</html>

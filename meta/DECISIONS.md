@@ -19,7 +19,7 @@ The pre-reset site (Saveglass / Machine Candy / Menu Ink) is preserved on branch
 
 ## Handoff documents
 
-- The builder prompt says "the four mockup HTML files"; the handoff zip contained three (`9999-mockup-v3.html`, `9999-mockup-v4.html`, `reality-mockup-v3-max.html`). All three are committed to `design-targets/`. If a fourth exists, it was never delivered.
+- The builder prompt says "the four mockup HTML files"; the handoff zip contained three (`9999-mockup-v3.html`, `9999-mockup-v4.html`, `reality-mockup-v3-max.html`). All three are committed to `design-targets/`. Owner confirmed (2026-06-12) these are the newest available: mockups show direction only — the blueprint is the build directive.
 - `9999-mockup-v4 (2).html` from the zip was committed as `9999-mockup-v4.html`.
 - The earlier `codexhandoff/` directory was removed: it held a stale zip plus a truncated copy of the blueprint. Canonical law documents live in `meta/` (full, byte-identical to the handoff versions) and visual targets in `design-targets/`. The original upload survives in git history and on `archive/pre-reset`-era commits.
 

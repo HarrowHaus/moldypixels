@@ -1,0 +1,6 @@
+@layer base {
+  html { color-scheme: light; }
+  body { min-block-size: 100vh; font-family: system-ui, sans-serif; }
+  a { color: currentColor; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+}

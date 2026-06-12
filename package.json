@@ -1,10 +1,22 @@
 {
-  "name": "moldy-pixels",
-  "version": "1.0.0",
+  "name": "moldy-pixels-console-family",
+  "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.12.3",
   "scripts": {
-    "start": "python3 -m http.server 8080",
-    "start:termux": "python -m http.server 8080"
+    "dev": "node packages/internal/build/build.mjs --watch",
+    "build": "node packages/internal/build/build.mjs",
+    "test": "node packages/internal/test/smoke.mjs",
+    "lint": "stylelint \"packages/*/src/**/*.css\"",
+    "changeset": "changeset",
+    "release": "changeset version && changeset publish"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "esbuild": "^0.24.0",
+    "lightningcss": "^1.27.0",
+    "lightningcss-cli": "^1.27.0",
+    "stylelint": "^16.10.0"
+  }
 }

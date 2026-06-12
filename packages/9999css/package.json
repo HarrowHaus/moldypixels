@@ -1,0 +1,7 @@
+{
+  "name": "9999css",
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": true,
+  "dependencies": {}
+}

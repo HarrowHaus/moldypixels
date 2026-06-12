@@ -1,0 +1,8 @@
+@layer primitives {
+  .dc-stack, .r64-stack { display: grid; gap: var(--x-gap, 1rem); }
+  .dc-cluster, .r64-cluster { display: flex; flex-wrap: wrap; gap: var(--x-gap, 1rem); align-items: center; }
+  .dc-grid, .r64-grid { display: grid; gap: var(--x-gap, 1rem); grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
+  .dc-center, .r64-center { inline-size: min(100% - 2rem, var(--x-measure, 72rem)); margin-inline: auto; }
+  .dc-frame, .r64-frame { aspect-ratio: var(--x-ratio, 16 / 9); overflow: hidden; }
+  .dc-screen, .r64-screen { min-block-size: 100svh; padding: var(--x-screen-pad, 1rem); }
+}

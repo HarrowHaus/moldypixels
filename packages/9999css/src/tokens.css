@@ -1,0 +1,9 @@
+@layer tokens {
+  :root {
+    --dc-bg: #f5fbff;
+    --dc-fg: #123047;
+    --dc-accent: #1b8cff;
+    --dc-surface: #ffffff;
+    --dc-line: #91b7d4;
+  }
+}

@@ -1,0 +1,1 @@
+console.log('U0 smoke ok')

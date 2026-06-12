@@ -1,5 +1,6 @@
-.DS_Store
+packages/*/dist/
 node_modules/
-dist/
-build/
-.env
+.pnpm-store/
+.DS_Store
+test-results/
+coverage/

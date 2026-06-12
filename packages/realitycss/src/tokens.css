@@ -1,0 +1,9 @@
+@layer tokens {
+  :root {
+    --r64-bg: #101018;
+    --r64-fg: #f5edd0;
+    --r64-accent: #6f8cff;
+    --r64-surface: #2c2a3d;
+    --r64-line: #82765f;
+  }
+}
